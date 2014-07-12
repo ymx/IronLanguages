@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Security;
+using System.Security.Permissions;
 using System.Security.Policy;
 using System.Text;
 
@@ -51,7 +52,7 @@ namespace IronRuby.Tests
             PermissionSet setIntersection = new PermissionSet(PermissionState.Unrestricted);
 
             // iterate over each policy level
-            IEnumerator e = SecurityManager.PolicyHierarchy();
+            System.Collections.IEnumerator e = SecurityManager.PolicyHierarchy();
             while (e.MoveNext()) {
                 PolicyLevel level = (PolicyLevel)e.Current;
                 PermissionSet levelSet = level.GetNamedPermissionSet(name);
