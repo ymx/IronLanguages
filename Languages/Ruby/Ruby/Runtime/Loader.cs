@@ -1014,7 +1014,7 @@ namespace IronRuby.Runtime {
         private readonly HashSet<Type> _loadedTypes = new HashSet<Type>();
 
         /// <exception cref="LoadError"></exception>
-        private void LoadLibrary(Type/*!*/ initializerType, bool builtin) {
+        public void LoadLibrary(Type/*!*/ initializerType, bool builtin) {
             lock (_loadedTypes) {
                 if (_loadedTypes.Contains(initializerType)) {
                     return;

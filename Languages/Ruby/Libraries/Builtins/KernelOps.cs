@@ -125,7 +125,9 @@ namespace IronRuby.Builtins {
             RubyScope/*!*/ scope, object self, object real, [DefaultParameterValue(null)]object imaginary) {
             
             // TODO: hack: redefines this method
+#if FEATURE_FILESYSTEM
             scope.RubyContext.Loader.LoadFile(scope.GlobalScope.Scope, self, MutableString.CreateAscii("complex18.rb"), LoadFlags.Require);
+#endif
             var site = toComplex.GetCallSite("Complex", 2);
             return site.Target(site, self, real, imaginary);
         }
@@ -136,7 +138,9 @@ namespace IronRuby.Builtins {
             RubyScope/*!*/ scope, object self, object numerator, [DefaultParameterValue(null)]object denominator) {
 
             // TODO: hack: redefines this method
+#if FEATURE_FILESYSTEM
             scope.RubyContext.Loader.LoadFile(scope.GlobalScope.Scope, self, MutableString.CreateAscii("rational18.rb"), LoadFlags.Require);
+#endif
             var site = toRational.GetCallSite("Rational", 2);
             return site.Target(site, self, numerator, denominator);
         }
